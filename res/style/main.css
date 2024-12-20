@@ -1,1 +1,18 @@
-/*# sourceMappingURL=main.css.map */
+body {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+#main-div {
+  width: 100vw;
+  height: 100vh;
+}
+
+#register-screen {
+  aspect-ratio: 3/2;
+  height: 90%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}/*# sourceMappingURL=main.css.map */
