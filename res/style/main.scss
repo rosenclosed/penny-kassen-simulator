@@ -16,3 +16,303 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.register-screen {  display: grid;
+    grid-template-columns: 42% 58%;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "screen-left-side screen-right-side";
+  }
+  
+  .screen-left-side {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 45% 55%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "digital-receipt-area"
+      "numpad-area";
+    grid-area: screen-left-side;
+  }
+  
+  .numpad-area {  display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "numpad-pad-area numpad-op-btn-area";
+    grid-area: numpad-area;
+  }
+  
+  .numpad-op-btn-area {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "numpad-back-btn"
+      "numpad-delete-btn"
+      "numpad-menge-btn"
+      "numpad-eingabe-btn";
+    grid-area: numpad-op-btn-area;
+  }
+  
+  .numpad-back-btn { grid-area: numpad-back-btn; }
+  
+  .numpad-delete-btn { grid-area: numpad-delete-btn; }
+  
+  .numpad-menge-btn { grid-area: numpad-menge-btn; }
+  
+  .numpad-eingabe-btn { grid-area: numpad-eingabe-btn; }
+  
+  .numpad-pad-area {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15% 85%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "numpad-line"
+      "numpad-pad-btn-area";
+    grid-area: numpad-pad-area;
+  }
+  
+  .numpad-line { grid-area: numpad-line; }
+  
+  .numpad-pad-btn-area {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "numpad-7-btn numpad-8-btn numpad-9-btn"
+      "numpad-4-btn numpad-5-btn numpad-6-btn"
+      "numpad-1-btn numpad-2-btn numpad-3-btn"
+      "numpad-0-btn numpad-0-btn numpad-00-btn";
+    grid-area: numpad-pad-btn-area;
+  }
+  
+  .numpad-0-btn { grid-area: numpad-0-btn; }
+  
+  .numpad-00-btn { grid-area: numpad-00-btn; }
+  
+  .numpad-1-btn { grid-area: numpad-1-btn; }
+  
+  .numpad-2-btn { grid-area: numpad-2-btn; }
+  
+  .numpad-3-btn { grid-area: numpad-3-btn; }
+  
+  .numpad-4-btn { grid-area: numpad-4-btn; }
+  
+  .numpad-5-btn { grid-area: numpad-5-btn; }
+  
+  .numpad-6-btn { grid-area: numpad-6-btn; }
+  
+  .numpad-7-btn { grid-area: numpad-7-btn; }
+  
+  .numpad-8-btn { grid-area: numpad-8-btn; }
+  
+  .numpad-9-btn { grid-area: numpad-9-btn; }
+  
+  .digital-receipt-area {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 7% 80% 13%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "digital-receipt-description-bar"
+      "digital-receipt-list"
+      "digital-receipt-bottom-area";
+    grid-area: digital-receipt-area;
+  }
+  
+  .digital-receipt-description-bar { grid-area: digital-receipt-description-bar; }
+  
+  .digital-receipt-list {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      ".";
+    grid-area: digital-receipt-list;
+  }
+  
+  .digital-receipt-bottom-area {  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "digital-receipt-btn-area digital-receipt-sum-area";
+    grid-area: digital-receipt-bottom-area;
+  }
+  
+  .digital-receipt-sum-area { grid-area: digital-receipt-sum-area; }
+  
+  .digital-receipt-btn-area {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "digital-receipt-up-btn digital-receipt-down-btn digital-receipt-expand-btn";
+    grid-area: digital-receipt-btn-area;
+  }
+  
+  .digital-receipt-up-btn { grid-area: digital-receipt-up-btn; }
+  
+  .digital-receipt-down-btn { grid-area: digital-receipt-down-btn; }
+  
+  .digital-receipt-expand-btn { grid-area: digital-receipt-expand-btn; }
+  
+  .screen-right-side {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15% 20% 60% 5%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "big-info-area"
+      "modal-btn-area"
+      "operator-btn-area"
+      "small-info-area";
+    grid-area: screen-right-side;
+  }
+  
+  .operator-btn-area {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: operator-btn-area;
+  }
+  
+  .eingabe-btn { grid-area: 5 / 3 / 7 / 4; }
+  
+  .kiste-btn { grid-area: 3 / 4 / 4 / 5; }
+  
+  .preisabfrage-btn { grid-area: 3 / 5 / 4 / 6; }
+  
+  .warenruecknahme-btn { grid-area: 4 / 5 / 5 / 6; }
+  
+  .summe-btn { grid-area: 5 / 4 / 7 / 6; }
+  
+  .sum-screen-bar-btn { grid-area: 5 / 4 / 7 / 6; }
+  
+  .sum-screen-eft-btn { grid-area: 3 / 4 / 5 / 6; }
+  
+  .zeilenstorno-btn { grid-area: 5 / 2 / 6 / 3; }
+  
+  .sofortstorno-btn { grid-area: 6 / 2 / 7 / 3; }
+  
+  .sum-screen-eingabe-btn { grid-area: 5 / 2 / 7 / 3; }
+  
+  .tragetasche-btn { grid-area: 1 / 1 / 2 / 2; }
+  
+  .rabatt-btn { grid-area: 2 / 5 / 3 / 6; }
+  
+  .fundgeld-btn { grid-area: 2 / 3 / 3 / 4; }
+  
+  .bonvorschub-btn { grid-area: 2 / 2 / 3 / 3; }
+  
+  .bon-parken-btn { grid-area: 2 / 1 / 3 / 2; }
+  
+  .code-btn { grid-area: 3 / 2 / 4 / 3; }
+  
+  .alterpreis-neuerpreis-btn { grid-area: 4 / 3 / 5 / 4; }
+  
+  .sum-screen-code-btn { grid-area: 3 / 1 / 4 / 2; }
+  
+  .sum-screen-gutscheine-btn { grid-area: 3 / 2 / 4 / 3; }
+  
+  .sum-screen-paybackpay-btn { grid-area: 3 / 3 / 4 / 4; }
+  
+  .sum-screen-stimmtso-btn { grid-area: 4 / 1 / 5 / 2; }
+  
+  .sum-screen-zeilenstorno-btn { grid-area: 5 / 1 / 6 / 2; }
+  
+  .sum-screen-sofortstorno-btn { grid-area: 6 / 1 / 7 / 2; }
+  
+  .sum-screen-5euro-btn { grid-area: 1 / 1 / 2 / 3; }
+  
+  .sum-screen-10euro-btn { grid-area: 2 / 1 / 3 / 3; }
+  
+  .sum-screen-20euro-btn { grid-area: 1 / 3 / 2 / 5; }
+  
+  .sum-screen-50euro-btn { grid-area: 2 / 3 / 3 / 5; }
+  
+  .nonfood-tax-btn { grid-area: 1 / 3 / 2 / 4; }
+  
+  .lebensmittel-tax-btn { grid-area: 1 / 4 / 2 / 5; }
+  
+  .modal-btn-area {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "o-g-lose-btn o-g-alle-btn bake-off-btn blumen-btn"
+      "getraenke-btn kolo-btn nonfood-btn home-btn";
+    grid-area: modal-btn-area;
+  }
+  
+  .o-g-lose-btn { grid-area: o-g-lose-btn; }
+  
+  .o-g-alle-btn { grid-area: o-g-alle-btn; }
+  
+  .bake-off-btn { grid-area: bake-off-btn; }
+  
+  .blumen-btn { grid-area: blumen-btn; }
+  
+  .getraenke-btn { grid-area: getraenke-btn; }
+  
+  .kolo-btn { grid-area: kolo-btn; }
+  
+  .home-btn { grid-area: home-btn; }
+  
+  .nonfood-btn { grid-area: nonfood-btn; }
+  
+  .big-info-area {  display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "big-info-area-line1 ."
+      "big-info-area-line2 .";
+    grid-area: big-info-area;
+  }
+  
+  .big-info-area-line1 { grid-area: big-info-area-line1; }
+  
+  .big-info-area-line2 { grid-area: big-info-area-line2; }
+  
+  .small-info-area {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "bediener-no . info-btn payback-indicator time-and-date";
+    grid-area: small-info-area;
+  }
+  
+  .info-btn { grid-area: info-btn; }
+  
+  .payback-indicator { grid-area: payback-indicator; }
+  
+  .time-and-date { grid-area: time-and-date; }
+  
+  .bediener-no { grid-area: bediener-no; }
+  
