@@ -140,6 +140,7 @@ const handleMengeOperation = (amount) => {
         console.debug("Multiplicator is now: ", amount);
         bigInfoLine1Front.text("MENGE:    " + amount);
         //bigInfoLine1Back.text(amount + "   ");
+        numberLine.text("");
 
     } else if (Number(amount) >= 100) {
         console.warn("Menge zu groß!");
