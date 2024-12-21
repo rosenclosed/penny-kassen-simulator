@@ -134,7 +134,7 @@ const pushNumpadEntry = (numpadEntry) => {
 };
 
 const handleMengeOperation = (amount) => {
-    if (!isMengeActive && Number(amount) < 100) {
+    if (!isMengeActive && Number(amount) < 100 && Number(amount) > 0) {
         isMengeActive = true;
         currentMengeMultiplicator = amount;
         console.debug("Multiplicator is now: ", amount);
@@ -147,5 +147,8 @@ const handleMengeOperation = (amount) => {
         numberLine.text("");
     } else if (isMengeActive) {
         console.warn("Menge already active!");
+    } else if (Number(amount) <= 0) {
+        console.warn("Menge kleiner/gleich 0!");
+        numberLine.text("");
     }
 };
