@@ -1,14 +1,24 @@
 //Define all globally important elements first
-const numberLine = $("#numpad-number-line");
-const bigInfoLine1Front = $("#big-info-area-line1-text1");
-const bigInfoLine1Back = $("#big-info-area-line1-text2");
-const bigInfoLine2Front = $("#big-info-area-line2-text1");
-const bigInfoLine2Back = $("#big-info-area-line2-text2");
+const numberLine = $("#numpad-number-line"); //The number line which recieves the numpad inputs
+const bigInfoLine1Front = $("#big-info-area-line1-text1"); //the front span element of the upper red info line
+const bigInfoLine1Back = $("#big-info-area-line1-text2"); //the back span element of the upper red info line
+const bigInfoLine2Front = $("#big-info-area-line2-text1"); //the front span elemet of the lower red info line
+const bigInfoLine2Back = $("#big-info-area-line2-text2"); //the back span element of the lower red info line
 
 //Define all important global variables
-let lastEnteredNumber;
-let isMengeActive = false;
-let currentMengeMultiplicator;
+let registerState; //stores the current state of the register
+let lastEnteredNumber; //stores the last entered EAN/NAN/PLU for easy re-entry with EINGABE
+let isMengeActive = false; //stores if the Mengentaste is active or not to correctly handle inputs
+let isKisteActive = false; //stores if the Kistentaste is active or not to correctly handle inputs
+let currentMengeMultiplicator; //stores the current Amount multiplicator to correctly handle inputs
+
+
+//set Register state to home on document load
+$(document).ready(function () {
+    console.debug("Document ready!")
+    registerState = "home";
+    console.debug("Register State: ", registerState);
+});
 
 
 //Adding an event listener for a click or touch to all buttons with the class "penny-btn"
