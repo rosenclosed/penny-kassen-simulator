@@ -19,41 +19,50 @@ $(".penny-btn").on("touchend click", function (event) {
 
     //Determine which area the pressed button belongs to by checking what the ID starts with.
     //Aftwerwards call the handler function and pass the Object, ID and the context of the pressed button
+    
+    //checks if the button is one of the empty, not defined buttons
     if (pressedButtonId == undefined) {
         console.warn("Taste nicht belegt!");
         return;
     };
 
+    //checks if the button is a numpad button
     if (pressedButtonId.startsWith("numpad-")) {
         buttonHandler(pressedButton, pressedButtonId, "numpadButtons");
         return;
     };
 
+    //checks if the button is a button on the home screen of the operator panel
     if (pressedButtonId.startsWith("op-home-")) {
         buttonHandler(pressedButton, pressedButtonId, "operatorHomeButtons");
         return;
     };
 
+    //checks if the button is a button on the sum screen of the operator panel
     if (pressedButtonId.startsWith("op-sum-")) {
         buttonHandler(pressedButton, pressedButtonId, "operatorSumButtons");
         return;
     };
 
+    //checks if the button is one of the modal triggering buttons
     if (pressedButtonId.startsWith("mod-")) {
         buttonHandler(pressedButton, pressedButtonId, "modalButtons");
         return;
     };
 
+    //checks if the button is one of the small buttons in the bottom info line
     if (pressedButtonId.startsWith("info-")) {
         buttonHandler(pressedButton, pressedButtonId, "smallInfoButtons");
         return;
     };
 
+    //checks if the button is one of the buttons to control/scroll the digital receipt
     if (pressedButtonId.startsWith("digital-receipt-")) {
         buttonHandler(pressedButton, pressedButtonId, "digitalReceiptButtons");
         return;
     };
 
+    //throw a console error if the button does no belong to a known area, so if something is very broken
     console.error("Button does not belong to a known area.");
     buttonHandler(pressedButton, pressedButtonId, "unknown");
 
