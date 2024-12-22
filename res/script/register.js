@@ -89,7 +89,12 @@ const buttonHandler = (pressedButton, pressedButtonId, pressedButtonContext) => 
 
 const appendToNumberLine = (number) => {
     const currentText = numberLine.text(); //Get the current text
-    numberLine.text(currentText + number);
+    if (currentText.length < 16) {
+        numberLine.text(currentText + number);
+    } else {
+        console.warn("Eingabe zu lang!");
+        numberLine.text("");
+    }
 };
 
 const handleNumpadOperations = (buttonId) => {
