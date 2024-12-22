@@ -123,9 +123,7 @@ const handleNumpadOperations = (buttonId) => {
             }
             break;
         case "numpad-eingabe-btn":
-            console.debug("Eingabe Operation triggered");
-            pushNumpadEntry(numberLine.text())
-            numberLine.text("");
+            eingabeHandler();
             break;
         case "numpad-menge-btn":
             console.debug("Menge Operation triggered");
@@ -134,6 +132,12 @@ const handleNumpadOperations = (buttonId) => {
             handleMengeOperation(numberLine.text());
             break;
     };
+};
+
+const eingabeHandler = () => {
+    console.debug("Eingabe Operation triggered");
+    pushNumpadEntry(numberLine.text())
+    numberLine.text("");
 };
 
 const pushNumpadEntry = (numpadEntry) => {
