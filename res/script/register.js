@@ -156,9 +156,9 @@ const pushNumpadEntry = (numpadEntry) => {
     const { isValid, type } = validateEAN(numpadEntry); // Validate the input
     if (isValid) {
         console.log(`Valid ${type} detected: ${numpadEntry}`); // Log the valid input
-        queryBackend(numpadEntry, type); // Simulate a backend query
+        queryBackend(numpadEntry, type); // Query the backend based on the type
     } else {
-        displayError(`Invalid EAN entered: ${numpadEntry}`); // Show an error for invalid input
+        displayError(`Invalid code entered: ${numpadEntry}`); // Show an error for invalid input
     }
 };
 
@@ -170,18 +170,21 @@ const displayError = (message) => {
 
 // Simulate a backend query
 // Placeholder function for future AJAX calls
-const queryBackend = (ean, eanType) => {
-    console.log(`Querying backend for ${eanType} with EAN: ${ean}`); // Log the query
+const queryBackend = (code, codeType) => {
+    console.log(`Querying backend for ${codeType} with code: ${code}`); // Log the query
+
     // Replace with actual AJAX logic
     $.ajax({
         url: "/backend/test.php",
         method: "GET",
-        data: { ean, eanType },
+        data: { code, codeType },
         success: (response) => {
             console.log("Backend response:", response);
+            // Process the response here, depending on your backend's format
         },
         error: (xhr, status, error) => {
             console.error("Backend query failed:", error);
+            displayError("Error contacting backend");
         }
     });
 };
@@ -192,17 +195,29 @@ const validateEAN = (ean) => {
     if (!/^\d+$/.test(ean)) return { isValid: false, type: null }; // Ensure input is numeric
 
     const length = ean.length; // Get the length of the EAN
-    if (![8, 13].includes(length)) return { isValid: false, type: null }; // Check for valid lengths
+    if (length === 8 || length === 13) {
+        // EAN-8 or EAN-13 validation
+        const checksum = Array.from(ean)
+            .slice(0, -1)
+            .reduce((sum, char, i) => sum + parseInt(char, 10) * (length === 13 ? (i % 2 === 0 ? 1 : 3) : (i % 2 === 0 ? 3 : 1)), 0);
 
-    // Calculate the checksum for validation
-    const checksum = Array.from(ean)
-        .slice(0, -1)
-        .reduce((sum, char, i) => sum + parseInt(char, 10) * (length === 13 ? (i % 2 === 0 ? 1 : 3) : (i % 2 === 0 ? 3 : 1)), 0);
+        return {
+            isValid: (10 - (checksum % 10)) % 10 === parseInt(ean[length - 1], 10), // Validate the checksum
+            type: length === 13 ? "ean13" : "ean8" // Determine the type
+        };
+    }
 
-    return {
-        isValid: (10 - (checksum % 10)) % 10 === parseInt(ean[length - 1], 10), // Validate the checksum
-        type: length === 13 ? "ean13" : "ean8" // Determine the type
-    };
+    if (length === 10) {
+        // Validate NAN (10 digits)
+        return { isValid: true, type: "nan" };
+    }
+
+    if (length <= 6) {
+        // Validate PLU (up to 6 digits)
+        return { isValid: true, type: "plu" };
+    }
+
+    return { isValid: false, type: null }; // Return invalid for other lengths
 };
 
 // Handle a Menge (quantity) operation
