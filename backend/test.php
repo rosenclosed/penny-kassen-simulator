@@ -27,16 +27,16 @@ function queryDb($config)
             $column = '';
             switch ($eanType) {
                 case 'ean13':
-                    $column = 'EAN13';
+                    $column = 'ean_13';
                     break;
                 case 'ean8':
-                    $column = 'EAN8';
+                    $column = 'ean_8';
                     break;
                 case 'plu':
-                    $column = 'PLU';
+                    $column = 'plu';
                     break;
                 case 'nan':
-                    $column = 'NAN';
+                    $column = 'nan';
                     break;
                 default:
                     echo json_encode([
