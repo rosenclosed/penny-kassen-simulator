@@ -173,9 +173,9 @@ const displayError = (message) => {
 const queryBackend = (ean, eanType) => {
     console.log(`Querying backend for ${eanType} with EAN: ${ean}`); // Log the query
     // Replace with actual AJAX logic
-    /* $.ajax({
-        url: "/api/query",
-        method: "POST",
+    $.ajax({
+        url: "/backend/test.php",
+        method: "GET",
         data: { ean, eanType },
         success: (response) => {
             console.log("Backend response:", response);
@@ -183,7 +183,7 @@ const queryBackend = (ean, eanType) => {
         error: (xhr, status, error) => {
             console.error("Backend query failed:", error);
         }
-    }); */
+    });
 };
 
 // Validate an EAN (European Article Number)
@@ -201,7 +201,7 @@ const validateEAN = (ean) => {
 
     return {
         isValid: (10 - (checksum % 10)) % 10 === parseInt(ean[length - 1], 10), // Validate the checksum
-        type: length === 13 ? "EAN-13" : "EAN-8" // Determine the type
+        type: length === 13 ? "ean13" : "ean8" // Determine the type
     };
 };
 
