@@ -29,7 +29,7 @@ $(".penny-btn").on("touchend click", function (event) {
 
     //Determine which area the pressed button belongs to by checking what the ID starts with.
     //Aftwerwards call the handler function and pass the Object, ID and the context of the pressed button
-    
+
     //checks if the button is one of the empty, not defined buttons
     if (pressedButtonId == undefined) {
         console.warn("Taste nicht belegt!");
@@ -152,6 +152,7 @@ const eingabeHandler = () => {
 
 const pushNumpadEntry = (numpadEntry) => {
     console.debug("Numpad Entry: ", numpadEntry);
+
     if (isMengeActive) {
         //add stuff
         console.debug("Now entered " + currentMengeMultiplicator + "x Item No. " + numpadEntry)
@@ -159,6 +160,73 @@ const pushNumpadEntry = (numpadEntry) => {
         bigInfoLine1Front.text("");
         currentMengeMultiplicator = "";
     }
+
+    // Perform EAN validation
+    const { isValid, type } = validateEAN(numpadEntry);
+
+    if (isValid) {
+        console.log(`Valid ${type} detected: ${numpadEntry}`);
+        // Query the backend with EAN type and value
+        queryBackend(numpadEntry, type);
+    } else {
+        console.error(`Invalid EAN entered: ${numpadEntry}`);
+        // Show an error message to the user
+        $("body").append(`<div class="error">Invalid EAN entered: ${numpadEntry}</div>`);
+        $(".error").fadeOut(3000, () => $(this).remove());
+    }
+
+};
+
+// Simulated backend query function using jQuery's AJAX
+const queryBackend = (ean, eanType) => {
+    console.log(`Querying backend for ${eanType} in the appropriate column with EAN: ${ean}`);
+    // Replace with actual AJAX logic
+    /* $.ajax({
+        url: "/api/query",
+        method: "POST",
+        data: { ean, eanType },
+        success: (response) => {
+            console.log("Backend response:", response);
+        },
+        error: (xhr, status, error) => {
+            console.error("Backend query failed:", error);
+        }
+    }); */
+};
+
+//Helper function to validate EAN and determine it's type
+const validateEAN = (ean) => {
+    //Ensure that the input is a string and only contains digits
+    if (!/^\d+$/.test(ean)) {
+        return { isValid: false, type: null };
+    }
+
+    //Store the length of the String
+    const length = ean.length;
+
+    //Check for valid EAN lengths (EAN-8 or EAN-13)
+    if (length !== 8 && length !== 13) {
+        return { isValid: false, type: null };
+    }
+
+    let sum = 0;
+    for (let i = 0; i < length - 1; i++) {
+        const digit = parseInt(ean[i], 10);
+        sum += length === 13
+            ? (i % 2 === 0 ? 1 : 3) * digit //EAN-13 weighting
+            : (i % 2 === 0 ? 3 : 1) * digit; //EAN-8 weighting
+    }
+
+    //Calculate checksum
+    const checksum = (10 - (sum % 10)) % 10;
+
+    //Validate Checksum
+    return {
+        isValid: checksum === parseInt(ean[length - 1], 10),
+        type: checksum === parseInt(ean[length - 1], 10)
+            ? (length === 13 ? "EAN-13" : "EAN-8")
+            : null
+    };
 };
 
 const handleMengeOperation = (amount) => {
