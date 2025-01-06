@@ -2,6 +2,7 @@
 import { domElements } from "./domElements.js";
 import { cancelMengeOperation, finishMengeOperation, handleMengeOperation } from "./mengeOperations.js";
 import { eingabeHandler } from "./eingabeHandler.js";
+import { globalVariables } from "./globalVariables.js";
 
 export const appendToNumberLine = (number) => {
     const currentText = domElements.numberLine.text();
