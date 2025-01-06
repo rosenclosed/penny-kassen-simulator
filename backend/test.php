@@ -18,28 +18,37 @@ function queryDb($config)
         $pdo = new PDO("mysql:host=$host;dbname=$dbName;charset=utf8mb4", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Check for EAN13, EAN8, PLU, or NAN in the GET parameters
-        $column = '';
-        $value = '';
+        // Get the ean and eanType parameters from the GET request
+        if (isset($_GET['code']) && isset($_GET['codeType'])) {
+            $ean = $_GET['code'];
+            $eanType = $_GET['codeType'];
+            
+            // Determine the column based on the eanType
+            $column = '';
+            switch ($eanType) {
+                case 'ean13':
+                    $column = 'EAN13';
+                    break;
+                case 'ean8':
+                    $column = 'EAN8';
+                    break;
+                case 'plu':
+                    $column = 'PLU';
+                    break;
+                case 'nan':
+                    $column = 'NAN';
+                    break;
+                default:
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Invalid eanType provided'
+                    ]);
+                    exit;
+            }
 
-        if (isset($_GET['ean13'])) {
-            $column = 'ean_13';
-            $value = $_GET['ean13'];
-        } elseif (isset($_GET['ean8'])) {
-            $column = 'ean_8';
-            $value = $_GET['ean8'];
-        } elseif (isset($_GET['plu'])) {
-            $column = 'plu';
-            $value = $_GET['plu'];
-        } elseif (isset($_GET['nan'])) {
-            $column = 'nan';
-            $value = $_GET['nan'];
-        }
-
-        if ($column && $value) {
             // Prepare the SQL query to search for the product by the selected column
-            $stmt = $pdo->prepare("SELECT * FROM Products WHERE $column = :value");
-            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+            $stmt = $pdo->prepare("SELECT * FROM Products WHERE $column = :ean");
+            $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
             $stmt->execute();
 
             // Fetch the result
@@ -51,10 +60,10 @@ function queryDb($config)
                 'data' => $result
             ]);
         } else {
-            // If no valid code parameter is provided
+            // If no ean or eanType is provided
             echo json_encode([
                 'success' => false,
-                'error' => 'No valid product code provided'
+                'error' => 'No valid ean or eanType provided'
             ]);
         }
     } catch (PDOException $e) {
@@ -66,6 +75,7 @@ function queryDb($config)
         ]);
     }
 }
+
 
 queryDb($dbConfig);
 ?>
