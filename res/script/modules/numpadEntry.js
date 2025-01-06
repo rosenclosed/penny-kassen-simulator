@@ -2,6 +2,7 @@
 import { validateEAN } from "./validation.js";
 import { globalVariables } from "./globalVariables.js";
 import { queryBackend } from "./queryBackend.js";
+import { finishMengeOperation } from "./mengeOperations.js";
 //import { displayError } from "./errorDisplay.js";
 
 export const pushNumpadEntry = (numpadEntry) => {
