@@ -7,7 +7,7 @@
     <title>Penny-Kassen-Sim</title>
     <link rel="stylesheet" href="/res/style/main.min.css" />
     <script src="/res/script/jquery-3.7.1.min.js"></script>
-    <link href="/res/script/register.js" rel="preload" as="script">
+    <link href="/res/script/index.js" rel="preload" as="script">
 </head>
 
 <body>
@@ -294,7 +294,7 @@
                 </div>
             </div>
         </div>
-        <script src="/res/script/register.js"></script>
+        <script src="/res/script/index.js"></script>
     </div>
     <div id="size-error-div">
         <p>
