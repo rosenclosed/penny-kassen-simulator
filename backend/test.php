@@ -54,11 +54,20 @@ function queryDb($config)
             // Fetch the result
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Output the JSON response
+            //Check if result is empty
+            if (sizeof($result) != 0) {
+                // Output the JSON response
             echo json_encode([
                 'success' => true,
                 'data' => $result
             ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'No database Entry found'
+                    ]);
+            }
+
         } else {
             // If no ean or eanType is provided
             echo json_encode([
