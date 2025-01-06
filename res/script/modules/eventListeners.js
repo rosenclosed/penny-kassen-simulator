@@ -41,4 +41,66 @@ export const initializeEventListeners = () => {
         console.error("Button does not belong to a known area.");
         buttonHandler(pressedButton, pressedButtonId, "unknown");
     });
+
+    $("body").on("keydown", (event) => {
+        const pressedKey = event.key;
+        switch(pressedKey) {
+            case "0":
+                console.debug("0 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "1":
+                console.debug("1 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "2":
+                console.debug("2 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "3":
+                console.debug("3 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "4":
+                console.debug("4 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "5":
+                console.debug("5 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "6":
+                console.debug("6 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;     
+            case "7":
+                console.debug("7 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "8":
+                console.debug("8 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "9":
+                console.debug("9 pressed on keyboard");
+                buttonHandler("numpad-" + pressedKey + "-btn", "numpad-" + pressedKey + "-btn", "numpadButtons");
+                break;
+            case "Enter":
+                console.debug("Enter pressed on keyboard");
+                buttonHandler("numpad-eingabe-btn", "numpad-eingabe-btn", "numpadButtons");
+                break;
+            case "Backspace":
+                console.debug("Backspace pressed on keyboard");
+                buttonHandler("numpad-back-btn", "numpad-back-btn", "numpadButtons");
+                break;
+            case "Delete":
+                console.debug("Delete pressed on keyboard");
+                buttonHandler("numpad-delete-btn", "numpad-delete-btn", "numpadButtons");
+                break;
+            default:
+                console.debug("irrelevant Key pressed on keyboard");
+                break;
+                                                                                                               
+        }
+    });
 };
