@@ -294,7 +294,7 @@
                 </div>
             </div>
         </div>
-        <script src="/res/script/index.js"></script>
+        <script src="/res/script/index.js" type="module"></script>
     </div>
     <div id="size-error-div">
         <p>
